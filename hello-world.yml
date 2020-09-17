@@ -1,4 +1,10 @@
 template: Hello, %s!
-defaultName: Stranger
+defaultName: deanosaure
 server:
   rootPath: /api/
+  applicationConnectors:
+    - type: http
+      port: 9000
+  adminConnectors:
+    - type: http
+      port: 9001
