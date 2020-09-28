@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: Dean l'émotif
+defaultName: Dean qui découvre les builds docker
 server:
   rootPath: /api/
   applicationConnectors:
