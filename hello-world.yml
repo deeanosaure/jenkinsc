@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: Dean qui découvre les builds docker
+defaultName: Dean qui découvre la promotion
 server:
   rootPath: /api/
   applicationConnectors:
