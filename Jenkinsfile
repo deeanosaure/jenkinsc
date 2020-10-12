@@ -22,6 +22,10 @@ node ('ssh'){
 }
 
 node ('docker'){
+
+    def DOCKER_IMG_BASENAME='demo-app'
+    def GIT_SHORT_CHANGESET='latest'
+
     stage('Checkout code') {
       checkout scm
     }
