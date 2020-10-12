@@ -1,6 +1,14 @@
+def DOCKER_IMG_BASENAME='demo-app'
+def GIT_SHORT_CHANGESET='latest'
+
 node ('ssh'){
     stage('Checkout code') {
       checkout scm
+
+      // We can set a groovy variable from a "sh" command stdout.
+      // Do not forget to remove endlines with trim()
+      GIT_SHORT_CHANGESET =
+        sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
     }
 
     stage('Build') {
@@ -23,16 +31,7 @@ node ('docker'){
     }
 
     stage('Set and Build image') {
-      sh 'DOCKER_IMG_BASENAME="demo-app"'
-      sh 'DOCKER_IMG_FULLNAME="demo-app:${GIT_COMMIT}"'
-      sh 'docker build -t "${DOCKER_IMG_FULLNAME}" ./'
-      sh 'docker tag "${DOCKER_IMG_FULLNAME}" "${DOCKER_IMG_BASENAME}:latest"'
-    }
-
-    stage('Run smoke tests') {
-      sh 'CID="$(docker run -d -P ${DOCKER_IMG_FULLNAME})"'
-      sh 'docker kill "${CID}"'
-      sh 'docker rm -v "${CID}"'
+      sh 'docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./'
     }
 
     stage('Activate Chuck Norris bitch'){
