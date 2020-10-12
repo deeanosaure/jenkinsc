@@ -8,7 +8,7 @@ node ('ssh'){
       sh 'mvn clean install'
     }
 
-    Stage('Archive binaries'){
+    stage('Archive binaries'){
       stash includes: '**/target/*.jar', name: 'app-binaries'
     }
 }
