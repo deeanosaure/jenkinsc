@@ -1,5 +1,3 @@
-def DOCKER_IMG_BASENAME='demo-app'
-def GIT_SHORT_CHANGESET='latest'
 
 node ('ssh'){
     stage('Checkout code') {
@@ -12,7 +10,7 @@ node ('ssh'){
     }
 
     stage('Build') {
-      tool name: 'maven3', type: 'maven'
+      //tool name: 'maven3', type: 'maven'
       sh 'mvn clean install'
     }
 
@@ -23,9 +21,6 @@ node ('ssh'){
 
 node ('docker'){
 
-    def DOCKER_IMG_BASENAME='demo-app'
-    def GIT_SHORT_CHANGESET='latest'
-
     stage('Checkout code') {
       checkout scm
     }
@@ -35,6 +30,8 @@ node ('docker'){
     }
 
     stage('Set and Build image') {
+      def DOCKER_IMG_BASENAME='demo-app'
+      def GIT_SHORT_CHANGESET='latest'
       sh 'docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./'
     }
 
