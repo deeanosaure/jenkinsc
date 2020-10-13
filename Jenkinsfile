@@ -35,18 +35,19 @@ node ('docker'){
       unstash 'app-binaries'
     }
 
-    environment {
-     DOCKER_IMG_BASENAME = 'demo-app'
-     GIT_SHORT_CHANGESET = 'latest'
-     GIT_SHORT_CHANGESET =
-       sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-   }
-
     stage('Set and Build image') {
-      sh "docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./"
+      sh "docker build -t demo-app:latest ./"
     }
 
     stage('Activate Chuck Norris bitch'){
       chuckNorris()
     }
+
+    stage('Deploy to staging'){
+      timeout(time: 1, unit: 'HOURS') {
+        input 'Can we deploy the image ?'
+        build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: 'demo-app:latest')]
+      }
+    }
+
 }
