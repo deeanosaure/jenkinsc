@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: Dean qui découvre la promotion
+defaultName: Dean qui taffe sur les pipe
 server:
   rootPath: /api/
   applicationConnectors:

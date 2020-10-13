@@ -11,11 +11,17 @@ node ('ssh'){
 
     stage('Build') {
       //tool name: 'maven3', type: 'maven'
-      sh 'mvn clean install'
+      sh 'mvn package'
+      junit '**/target/surefire-reports/*.xml'
     }
 
     stage('Archive binaries'){
       stash includes: '**/target/*.jar', name: 'app-binaries'
+    }
+
+    stage('Integration Tests'){
+      sh 'mvn verify -fn'
+
     }
 }
 
@@ -29,9 +35,14 @@ node ('docker'){
       unstash 'app-binaries'
     }
 
+    environment {
+     DOCKER_IMG_BASENAME = 'demo-app'
+     GIT_SHORT_CHANGESET = 'latest'
+     GIT_SHORT_CHANGESET =
+       sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+   }
+
     stage('Set and Build image') {
-      def DOCKER_IMG_BASENAME='demo-app'
-      def GIT_SHORT_CHANGESET='latest'
       sh 'docker build -t demo-app:latest ./'
     }
 
