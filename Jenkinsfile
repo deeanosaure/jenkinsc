@@ -43,7 +43,7 @@ node ('docker'){
    }
 
     stage('Set and Build image') {
-      sh 'docker build -t demo-app:latest ./'
+      sh "docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./"
     }
 
     stage('Activate Chuck Norris bitch'){
