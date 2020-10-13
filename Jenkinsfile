@@ -32,7 +32,7 @@ node ('docker'){
     stage('Set and Build image') {
       def DOCKER_IMG_BASENAME='demo-app'
       def GIT_SHORT_CHANGESET='latest'
-      sh 'docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./'
+      sh 'docker build -t demo-app:latest ./'
     }
 
     stage('Activate Chuck Norris bitch'){
