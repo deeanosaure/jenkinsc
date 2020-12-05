@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: Dean qui taffe sur les pipe
+defaultName: YOUR DEEEEEEEEEAAAAAAAAAAAAAAN ! :)
 server:
   rootPath: /api/
   applicationConnectors:
