@@ -1,6 +1,6 @@
 node {
     stage('Checkout code') {
-    git 'https://github.com/deeanosaure/demoapp.git'
+    checkout scm
 }
     stage('Build') {
     sh "mvn clean install"
