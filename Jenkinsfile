@@ -14,7 +14,7 @@ node('jnlp1') {
       unstash 'stashedfiles'
     }
     stage('Build docker image') {
-      sh "docker build -t "demo-app:latest" ./"
+      sh "docker build -t demo-app:latest ./"
     }
 
     stage('activate Chuck Norris bitch') {
