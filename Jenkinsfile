@@ -16,7 +16,7 @@ node('jnlp1') {
     unstash 'stashedfiles'
 }
     stage('Build docker image') {
-    sh "docker build -t demo-app:latest ./""
+    sh "docker build -t demo-app:latest ./"
 }
     stage('Smoke tests with Docker img') {
     sh "export STAGING_CONTAINER_NAME=staging-demo-app"
