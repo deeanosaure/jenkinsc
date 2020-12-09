@@ -20,13 +20,11 @@ node('jnlp1') {
 }
     stage('Smoke tests with Docker img') {
     sh "export STAGING_CONTAINER_NAME=staging-demo-app"
-    sh "docker stop $STAGING_CONTAINER_NAME && docker rm -v $STAGING_CONTAINER_NAME
- || echo "Nothing to Clean here""
+    sh "docker stop $STAGING_CONTAINER_NAME && docker rm -v $STAGING_CONTAINER_NAME || echo "Nothing to Clean here""
     sh "docker run --name=$STAGING_CONTAINER_NAME -d -p 20000:9000 demo-app:latest"
 }
 
   stage('activate Chuck Norris bitch') {
     ChuckNorris()
   }
-
 }
