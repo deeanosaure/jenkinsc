@@ -1,23 +1,23 @@
 node('ssh1') {
     stage('Checkout code') {
-    checkout scm
+      checkout scm
     }
     stage('Build') {
-    sh "mvn clean install"
+      sh "mvn clean install"
     }
     stage('Stash artifacts') {
-    stash includes: 'target/**/*.jar, Dockerfile, hello-world.yml', name: 'stashedfiles'
+      stash includes: 'target/**/*.jar, Dockerfile, hello-world.yml', name: 'stashedfiles'
     }
 }
 node('jnlp1') {
     stage('Unstash artifacts') {
-    unstash 'stashedfiles'
+      unstash 'stashedfiles'
     }
     stage('Build docker image') {
-    docker build -t "demo-app:latest" ./
+      sh "docker build -t "demo-app:latest" ./"
     }
 
     stage('activate Chuck Norris bitch') {
-    ChuckNorris()
+      ChuckNorris()
     }
 }
