@@ -1,4 +1,4 @@
-node {
+node('ssh1') {
     stage('Checkout code') {
     checkout scm
 }
