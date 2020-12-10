@@ -35,7 +35,7 @@ node('jnlp1') {
     }
 }
 
-stage('deploy to staging'){
+stage('deploy to staging') {
   timeout(time: 1, unit: 'HOURS') {
       input 'Should I deploy the docker image to staging ?'
     }
