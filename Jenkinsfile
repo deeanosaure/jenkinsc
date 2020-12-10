@@ -38,11 +38,11 @@ node('jnlp1') {
 stage('deploy to staging'){
   timeout(time: 1, unit: 'HOURS') {
       input 'Should I deploy the docker image to staging ?'
-  }
+    }
   sh " echo Deployment has been approved "
   build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: '${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET}')]
+}
 
-  stage('Re activate Chuck Norris bitchhhhhhhhhhhhhhh') {
-    chuckNorris()
-  }
-  }
+stage('Re activate Chuck Norris bitchhhhhhhhhhhhhhh') {
+  chuckNorris()
+}
