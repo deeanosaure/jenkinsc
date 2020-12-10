@@ -41,14 +41,14 @@ stage('deploy to staging ?') {
     }
 }
 
-stage('launch the build MAGNITUDE !') {
-  sh " echo Deployment has been approved "
+stage('launch the build MAGNITUDE ! POP POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP') {
   sleep 5
-  sh " POP POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP "
-  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
   build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: '${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET}')]
 }
 
+node('ssh1') {
+  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
+}
 stage('Re activate Chuck Norris bitchhhhhhhhhhhhhhh') {
   chuckNorris()
 }
