@@ -43,7 +43,7 @@ stage('deploy to staging ?') {
 
 stage('launch the build MAGNITUDE ! POP POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP') {
   sleep 5
-  build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: '${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET}')]
+  build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: 'demo-app:latest')]
 }
 
 node('ssh1') {
