@@ -35,11 +35,17 @@ node('jnlp1') {
     }
 }
 
-stage('deploy to staging') {
+stage('deploy to staging ?') {
   timeout(time: 1, unit: 'HOURS') {
-      input 'Should I deploy the docker image to staging ?'
+      input message: 'Should I deploy the docker image to staging ?', ok: 'VASY MGL', parameters: [string(defaultValue: '', description: '', name: 'COOL_PHRASE', trim: false)], submitter: 'Abed, Annie, deanosaure', submitterParameter: 'SUBMITTED'
     }
+}
+
+stage('launch the build MAGNITUDE !') {
   sh " echo Deployment has been approved "
+  sleep 5
+  sh " POP POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOP "
+  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
   build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: '${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET}')]
 }
 
