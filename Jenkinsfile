@@ -53,7 +53,7 @@ node('ssh1'){
     build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: 'demo-app:latest')]
   }
 
-  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
+//  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
 
   stage('Re activate Chuck Norris bitchhhhhhhhhhhhhhh') {
     chuckNorris()

@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: YOUR DEEEEEEEEEAAAAAAAAAAAAAAN ! :)
+defaultName: Magnitude.
 server:
   rootPath: /api/
   applicationConnectors:
