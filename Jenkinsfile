@@ -20,13 +20,13 @@ node('ssh1') {
 }
 
 
-parallel (smokeTests{
+parallel (smokeTests: {
   node('ssh1'){
     stage('smokeTests') {
       sh "mvn verify -fn"
     }
   }
-}, dockerBuilder{
+}, dockerBuilder: {
   node('jnlp1') {
       stage('Unstash artifacts') {
         unstash 'stashedfiles'
