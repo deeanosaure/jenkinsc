@@ -20,7 +20,7 @@ node('ssh1') {
 }
 
 
-parallel smokeTests{
+parallel (smokeTests{
   node('ssh1'){
     stage('smokeTests') {
       sh "mvn verify -fn"
@@ -39,6 +39,7 @@ parallel smokeTests{
       }
   }
 }
+)
 
 
 node('ssh1'){
