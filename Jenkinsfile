@@ -14,26 +14,32 @@ node('ssh1') {
     stage('Build the code') {
       sh "mvn package"
     }
-    stage('Smoke tests') {
-      sh "mvn verify"
-    }
     stage('Stash artifacts') {
       stash includes: 'target/**/*.jar, Dockerfile, hello-world.yml', name: 'stashedfiles'
       }
 }
 
 
-node('jnlp1') {
-    stage('Unstash artifacts') {
-      unstash 'stashedfiles'
+parallel smokeTests{
+  node('ssh1'){
+    stage('smokeTests') {
+      sh "mvn verify -fn"
     }
-    stage('Build docker image') {
-      sh "docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./"
+  }
+}, dockerBuilder{
+  node('jnlp1') {
+      stage('Unstash artifacts') {
+        unstash 'stashedfiles'
       }
-    stage('activate Chuck Norris bitch') {
-      chuckNorris()
-    }
+      stage('Build docker image') {
+        sh "docker build -t ${DOCKER_IMG_BASENAME}:${GIT_SHORT_CHANGESET} ./"
+        }
+      stage('activate Chuck Norris bitch') {
+        chuckNorris()
+      }
+  }
 }
+
 
 node('ssh1'){
   stage('deploy to staging ?') {
