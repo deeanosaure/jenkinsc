@@ -1,5 +1,4 @@
-def DOCKER_IMG_BASENAME='demo-app'
-def GIT_SHORT_CHANGESET='latest'
+@Library('admin-lib@master') _
 
 node('ssh1') {
     stage('Checkout code') {
@@ -41,8 +40,9 @@ parallel (smokeTests: {
 }
 )
 
-
+/*
 node('ssh1'){
+
   stage('deploy to staging ?') {
     timeout(time: 1, unit: 'HOURS') {
         input message: 'Should I deploy the docker image to staging ?', ok: 'VASY MGL', parameters: [string(defaultValue: '', description: '', name: 'COOL_PHRASE', trim: false)], submitter: 'Abed, Annie, deanosaure', submitterParameter: 'SUBMITTED'
@@ -54,8 +54,7 @@ node('ssh1'){
   }
 
 //  sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is ${COOL_PHRASE}"
-
-  stage('Re activate Chuck Norris bitchhhhhhhhhhhhhhh') {
-    chuckNorris()
-  }
 }
+*/
+
+approveAndDeploy("demo-app:latest")
