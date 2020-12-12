@@ -1,4 +1,6 @@
 @Library('admin-lib@master') _
+def DOCKER_IMG_BASENAME='demo-app'
+def GIT_SHORT_CHANGESET='latest'
 
 node('ssh1') {
     stage('Checkout code') {
