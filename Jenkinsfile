@@ -1,5 +1,4 @@
 pipeline {
-@Library('admin-lib@master') _
 
   agent none
 
@@ -51,8 +50,8 @@ pipeline {
 
     stage ('Parallel tests and build'){
       when {
-        branch 'declarative1'
         beforeAgent : true
+        branch 'declarative1'
       }
       parallel {
         stage('smokeTests - branch A'){
@@ -86,6 +85,7 @@ pipeline {
       agent { label 'ssh1'}
       steps {
         script {
+          @Library('admin-lib@master') _
           sleep 5
           build job: 'demoapp-staging-deployer', parameters: [string(name: 'DOCKER_IMAGE', value: 'demo-app:latest')]
           sleep 10
