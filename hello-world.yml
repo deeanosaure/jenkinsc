@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: Magnitude.
+defaultName: THe future jenkins certifies engineer
 server:
   rootPath: /api/
   applicationConnectors:

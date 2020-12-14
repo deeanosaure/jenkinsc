@@ -94,7 +94,6 @@ pipeline {
 
   post {
    success {
-    steps {
       sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is $COOL_PHRASE"
     }
    }
