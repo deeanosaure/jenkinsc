@@ -51,7 +51,7 @@ pipeline {
 
     stage ('Parallel tests and build'){
       when {
-        branch 'parallel1'
+        branch 'declarative1'
         beforeAgent : true
       }
       parallel {
