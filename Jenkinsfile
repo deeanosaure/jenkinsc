@@ -49,10 +49,7 @@ pipeline {
     }
 
     stage ('Parallel tests and build'){
-      when {
-        beforeAgent : true
-        branch 'declarative1'
-      }
+      when { branch 'declarative1' }
       parallel {
         stage('smokeTests - branch A'){
           agent { label 'ssh1'}
