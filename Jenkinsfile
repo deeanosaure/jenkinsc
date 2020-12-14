@@ -96,7 +96,6 @@ pipeline {
    success {
       sh "echo ${SUBMITTER} APPROVED THAT SHIT and his cool phrase is $COOL_PHRASE"
     }
-   }
    failure {
     echo "go fuck yourself"
    }
