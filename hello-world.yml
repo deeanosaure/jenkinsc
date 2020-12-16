@@ -1,5 +1,5 @@
 template: Hello, %s!
-defaultName: THe future jenkins certifies engineer
+defaultName: THe NEWLY JENKINS CERTIFIED ENGINEEEER ALSO YOUR DEEEEAN
 server:
   rootPath: /api/
   applicationConnectors:
